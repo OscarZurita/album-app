@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Photo.css'; // Import the CSS file
+import ReactDOM from 'react-dom/client';
+import { Link } from 'react-router-dom';
+
 
 const Photo = ({ photoId }) => {
     const [photo, setPhoto] = useState(null);
@@ -55,7 +58,11 @@ const Photo = ({ photoId }) => {
     return (
         <div className="photo-container">
             {photo && <h1>{photo.title}</h1>}
-            {imageSrc && <img src={imageSrc} alt="Photo" />}
+            {imageSrc && (
+                <Link to={`/metadata/${photoId}`}>
+                    <img src={imageSrc} alt="Photo" style={{ cursor: 'pointer' }} />
+                </Link>
+            )}
         </div>
     );
 };

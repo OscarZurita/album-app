@@ -39,6 +39,11 @@ public class PhotoController {
         return new ResponseEntity<>(photoService.getAllPhotos(), HttpStatus.OK);
     }
 
+    @GetMapping("/numPhotos")
+    public ResponseEntity<Integer> getNumPhotos() {
+        return new ResponseEntity<>(photoService.getNumPhotos(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}/metadata")
     public ResponseEntity<Photo> getPhotoMetadata(@PathVariable Integer id) {
         Photo photo = photoService.getPhotoByIdMetadata(id);

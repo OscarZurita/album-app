@@ -37,6 +37,11 @@ public class PhotoService {
     }
 
     @Transactional(readOnly = true)
+    public Integer getNumPhotos() {
+        return (int) photoRepository.count();
+    }
+
+    @Transactional(readOnly = true)
     public Page<Photo> getAllPhotos(Pageable pageable) {
         return photoRepository.findAll(pageable);
     }
