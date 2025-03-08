@@ -16,3 +16,15 @@
 .photo-container:hover {
   transform: scale(1.05);
 }
+
+.App {
+  width: 100vw; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

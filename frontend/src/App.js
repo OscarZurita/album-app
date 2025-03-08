@@ -3,10 +3,12 @@ import Photo from './Photo/Photo.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MetadataForm from './Photo/MetadataForm.js';
 import './App.css';
+import Navbar from './Navbar.js';
 
 function App() {
   const [numPhotos, setNumPhotos] = useState(0);
   const [photoIds, setPhotoIds] = useState([]); // Store photo IDs
+  const [backgroundImage, setBackgroundImage] = useState('');
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/v1/photos/numPhotos`)
@@ -18,12 +20,16 @@ function App() {
       .catch(err => {
         console.error("Error fetching number of photos:", err);
       });
+
+      const imageUrl = `http://localhost:8080/api/v1/photos/9`;
+      setBackgroundImage(imageUrl);
   }, []);
   
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
+        <Navbar />
+        <header className="App" style={{ backgroundImage: `url(${backgroundImage})` }}>
           <h1>Photo Album</h1>
           <Routes>
             {/* Main page with all photos */}
@@ -47,4 +53,3 @@ function App() {
 }
 
 export default App;
-

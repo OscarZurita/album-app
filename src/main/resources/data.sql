@@ -21,3 +21,6 @@ VALUES ('Photo7', 'src/main/resources/Album1/Photo7.jpg', 'Description for Photo
 
 INSERT INTO photo (title, file_path, description, url, last_modified_date, upload_date)
 VALUES ('Photo8', 'src/main/resources/Album1/Photo8.jpg', 'Description for Photo8', 'http://example.com/photo8', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO photo (title, file_path, description, url, last_modified_date, upload_date)
+VALUES ('Photo9', 'src/main/resources/backgrounds/background1.jpg', 'background', 'http://example.com/background1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
