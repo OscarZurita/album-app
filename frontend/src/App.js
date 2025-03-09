@@ -30,7 +30,6 @@ function App() {
       <div className="App">
         <Navbar />
         <header className="App" style={{ backgroundImage: `url(${backgroundImage})` }}>
-          <h1>Photo Album</h1>
           <Routes>
             {/* Main page with all photos */}
             <Route 

@@ -1,4 +1,5 @@
 .photo-gallery {
+  margin-top: 5vh;
   display: flex;
   flex-direction: column; /* Stack photos vertically */
   gap: 20vh; /* Space between photos */
