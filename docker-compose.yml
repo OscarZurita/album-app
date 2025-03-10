@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: springboot-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootdbpassword
+      MYSQL_DATABASE: album_app
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - springboot-network
+
+networks:
+  springboot-network:
+
+volumes:
+  mysql_data:
