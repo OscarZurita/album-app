@@ -1,4 +1,22 @@
 services:
+  spring-image:
+    container_name: springboot-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/album_app
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=rootdbpassword
+    volumes:
+      - /home/oscar/Desktop/LSR/album-app/pictures:/pictures
+    networks:
+      - springboot-network
+
   mysql:
     image: mysql:8
     container_name: springboot-mysql
@@ -6,8 +24,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rootdbpassword
       MYSQL_DATABASE: album_app
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
     ports:
       - "3307:3306"
     volumes:
