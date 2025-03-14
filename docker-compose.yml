@@ -1,6 +1,6 @@
 services:
   spring-image:
-    container_name: springboot-app
+    container_name: springboot-image-cont
     build:
       context: .
       dockerfile: Dockerfile
@@ -19,17 +19,36 @@ services:
 
   mysql:
     image: mysql:8
-    container_name: springboot-mysql
+    container_name: mysql-image-cont
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootdbpassword
       MYSQL_DATABASE: album_app
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - springboot-network
+
+  react-image:
+    container_name: react-image-cont
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+      - ./frontend/node_modules:/app/node_modules
+    depends_on:
+      - spring-image
+    networks:
+      - springboot-network
+    stdin_open: true
+    tty: true
+    command: npm start
+
 
 networks:
   springboot-network:
