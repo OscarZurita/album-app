@@ -1,15 +1,15 @@
 services:
   spring-image:
-    container_name: springboot-image-cont
+    container_name: springboot-container
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - 8080:8080
     depends_on:
-      - mysql
+      - mysql-image
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/album_app
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-image:3306/album_app
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=rootdbpassword
     volumes:
@@ -17,9 +17,9 @@ services:
     networks:
       - springboot-network
 
-  mysql:
+  mysql-image:
     image: mysql:8
-    container_name: mysql-image-cont
+    container_name: mysql-container
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootdbpassword
@@ -32,7 +32,7 @@ services:
       - springboot-network
 
   react-image:
-    container_name: react-image-cont
+    container_name: react-container
     build:
       context: ./frontend/
       dockerfile: Dockerfile
