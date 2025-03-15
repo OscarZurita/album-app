@@ -12,7 +12,7 @@ const Photo = ({ photoId }) => {
 
     useEffect(() => {
         // Fetch photo metadata
-        fetch(`http://192.168.0.39:8080/api/v1/photos/${photoId}/metadata`)
+        fetch(`${process.env.REACT_APP_BACKEND_URI}/api/v1/photos/${photoId}/metadata`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch photo metadata');
@@ -28,7 +28,7 @@ const Photo = ({ photoId }) => {
             });
 
         // Fetch actual photo
-        fetch(`http://192.168.0.39:8080/api/v1/photos/${photoId}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URI}/api/v1/photos/${photoId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch photo');

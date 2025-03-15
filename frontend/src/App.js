@@ -11,7 +11,7 @@ function App() {
   const [backgroundImage, setBackgroundImage] = useState('');
 
   useEffect(() => {
-    fetch(`http://192.168.0.39:8080/api/v1/photos/numPhotos`)
+    fetch(`${process.env.REACT_APP_BACKEND_URI}/api/v1/photos/numPhotos`)
       .then(response => response.json()) 
       .then(num => { 
         setNumPhotos(num); 
@@ -21,7 +21,7 @@ function App() {
         console.error("Error fetching number of photos:", err);
       });
 
-      const imageUrl = `http://192.168.0.39:8080/api/v1/photos/9`;
+      const imageUrl = `${process.env.REACT_APP_BACKEND_URI}/api/v1/photos/9`;
       setBackgroundImage(imageUrl);
   }, []);
   

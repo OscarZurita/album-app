@@ -1,6 +1,8 @@
 services:
   spring-image:
     container_name: springboot-container
+    env_file:
+      - ./.env.dev.docker
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,10 +10,6 @@ services:
       - 8080:8080
     depends_on:
       - mysql-image
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-image:3306/album_app
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=rootdbpassword
     volumes:
       - /home/oscar/Desktop/LSR/album-app/pictures:/pictures
     networks:
@@ -20,9 +18,11 @@ services:
   mysql-image:
     image: mysql:8
     container_name: mysql-container
+    env_file:
+      - ./.env.dev.docker
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootdbpassword
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: album_app
     ports:
       - "3306:3306"
@@ -33,6 +33,8 @@ services:
 
   react-image:
     container_name: react-container
+    env_file:
+      - ./.env.dev.docker
     build:
       context: ./frontend/
       dockerfile: Dockerfile
@@ -47,8 +49,6 @@ services:
       - springboot-network
     stdin_open: true
     tty: true
-    command: npm start
-
 
 networks:
   springboot-network:
