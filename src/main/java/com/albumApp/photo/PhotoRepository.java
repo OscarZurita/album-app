@@ -1,4 +1,4 @@
-package com.albumApp.Photo;
+package com.albumApp.photo;
 
 import java.util.List;
 import java.util.Optional;

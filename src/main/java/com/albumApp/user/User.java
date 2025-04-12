@@ -1,18 +1,21 @@
-package com.albumApp.User;
+package com.albumApp.user;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.albumApp.Album.Album;
+import com.albumApp.album.Album;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class User {
@@ -21,8 +24,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false, unique = true)
+    @Email
+    private String email;
 
     @Column(nullable = false)
     @CreationTimestamp
@@ -35,13 +42,19 @@ public class User {
     private String profilePic;
 
     @ManyToMany
-    private Set<Album> albums;
+    @JoinTable(
+        name = "user_albums",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "album_id")
+    )
+    private Set<Album> ownedAlbums;
 
     //JPA constructor
     public User() {}
 
-    public User(String name, String description) {
+    public User(String name, String email, String description) {
         this.name = name;
+        this.email = email;
         this.description = description;
     }
 
@@ -51,9 +64,13 @@ public class User {
         return id;
     }
     
-        public String getName() {
-            return name;
-        }
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public String getDescription() {
         return description;
@@ -73,6 +90,10 @@ public class User {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setDescription(String description) {

@@ -1,7 +1,4 @@
-package com.albumApp.Photo;
-
-import com.albumApp.Photo.Photo;
-import com.albumApp.Photo.PhotoRepository;
+package com.albumApp.photo;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,8 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 
 import com.albumApp.Exceptions.ResourceNotFoundException;
+import com.albumApp.photo.Photo;
+import com.albumApp.photo.PhotoRepository;
 
 import java.io.FileInputStream;
 import java.nio.file.Path;

@@ -1,4 +1,8 @@
 --this data.sql is intended to be run using the containerized application
+
+INSERT INTO album (title, last_modified_date, upload_date, description, url)
+VALUES ('Album1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'first example album','http://example.com/album1');
+
 INSERT INTO photo (title, file_path, description, url, last_modified_date, upload_date)
 VALUES ('Laura con gorro', './pictures/Album1/Photo1.jpg', 'Laura con un gorro gracioso en el centro comercial de málaga', 'http://example.com/photo1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
@@ -25,3 +29,12 @@ VALUES ('Photo8', './pictures/Album1/Photo8.jpg', 'Description for Photo8', 'htt
 
 INSERT INTO photo (title, file_path, description, url, last_modified_date, upload_date)
 VALUES ('Photo9', './pictures/backgrounds/background1.jpg', 'background', 'http://example.com/background1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO user (name, email, joined_date, description, profile_pic)
+VALUES ('Laura', 'laura@gmail.com', CURRENT_TIMESTAMP, 'empty', './pictures/profiles/profile1.jpg');
+
+INSERT INTO user (name, email, joined_date, description)
+VALUES ('Oscar', 'oscar@gmail.com', CURRENT_TIMESTAMP, 'empty');
+
+INSERT INTO user_albums (user_id, album_id)
+VALUES (1, 1);

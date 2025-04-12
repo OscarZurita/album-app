@@ -1,4 +1,4 @@
-package com.albumApp.Album;
+package com.albumApp.album;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.Set;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.albumApp.User.User;
+import com.albumApp.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,8 +43,8 @@ public class Album {
 
     @Column(nullable = true)
     private String url;
-
-    @ManyToMany
+    
+    @ManyToMany(mappedBy = "ownedAlbums")
     private Set<User> owners;
 
     //JPA constructor

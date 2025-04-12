@@ -1,6 +1,4 @@
-package com.albumApp.Photo;
-
-import com.albumApp.Photo.PhotoService;
+package com.albumApp.photo;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -20,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.albumApp.photo.PhotoService;
 
 @RestController
 @RequestMapping("/api/v1/photos")
