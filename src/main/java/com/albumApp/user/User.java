@@ -1,9 +1,13 @@
 package com.albumApp.user;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.albumApp.album.Album;
 
@@ -18,7 +22,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.persistence.JoinColumn;
 
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +34,9 @@ public class User {
     @Column(nullable = false, unique = true)
     @Email
     private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column(nullable = false)
     @CreationTimestamp
@@ -52,10 +59,47 @@ public class User {
     //JPA constructor
     public User() {}
 
-    public User(String name, String email, String description) {
+    public User(String name, String email, String password, String description) {
         this.name = name;
         this.email = email;
+        this.password = password;
         this.description = description;
+    }
+
+    // UserDetails interface methods
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Set.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     //GETTERS AND SETTERS
@@ -96,11 +140,19 @@ public class User {
         this.email = email;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
     public void setJoinedDate(LocalDateTime joinedDate) {
         this.joinedDate = joinedDate;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 } 

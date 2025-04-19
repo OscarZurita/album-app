@@ -31,11 +31,12 @@ VALUES (8, 'Photo8', './pictures/Album1/Photo8.jpg', 'Description for Photo8', '
 INSERT INTO photo (id, title, file_path, description, url, last_modified_date, upload_date, album_id)
 VALUES (9, 'Photo9', './pictures/backgrounds/background1.jpg', 'background', 'http://example.com/background1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
 
-INSERT INTO user (name, email, joined_date, description, profile_pic)
-VALUES ('Laura', 'laura@gmail.com', CURRENT_TIMESTAMP, 'empty', './pictures/profiles/profile1.jpg');
+-- Password for both users is: testpassword
+INSERT INTO user (name, email, password, joined_date, description, profile_pic)
+VALUES ('Laura', 'laura@gmail.com', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iKTVKIUi', CURRENT_TIMESTAMP, 'empty', './pictures/profiles/profile1.jpg');
 
-INSERT INTO user (name, email, joined_date, description)
-VALUES ('Oscar', 'oscar@gmail.com', CURRENT_TIMESTAMP, 'empty');
+INSERT INTO user (name, email, password, joined_date, description)
+VALUES ('Oscar', 'oscar@gmail.com', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iKTVKIUi', CURRENT_TIMESTAMP, 'empty');
 
 INSERT INTO user_albums (user_id, album_id)
 VALUES (1, 1);

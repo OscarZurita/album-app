@@ -41,4 +41,26 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
     }
 
+    @Transactional
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Transactional
+    public User updateUser(User user, Integer idToUpdate) {
+        User userToUpdate = userRepository.findById(idToUpdate).get();
+        userToUpdate.setName(user.getName());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setDescription(user.getDescription());
+        userToUpdate.setProfilePic(user.getProfilePic());
+        return userRepository.save(userToUpdate);
+    }
+
+    @Transactional
+    public void deleteUser(Integer id) {
+        userRepository.deleteById(id);
+    }
+    
+
 }

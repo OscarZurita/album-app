@@ -1,3 +1,22 @@
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .photo-gallery {
   margin-top: 5vh;
   display: flex;
@@ -16,16 +35,4 @@
 
 .photo-container:hover {
   transform: scale(1.05);
-}
-
-.App {
-  width: 100vw; 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
